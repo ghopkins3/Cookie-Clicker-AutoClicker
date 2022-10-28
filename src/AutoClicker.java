@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public final class Browser {
+public final class AutoClicker {
 
-    static final int click = InputEvent.BUTTON1_DOWN_MASK;
+    final int click = InputEvent.BUTTON1_DOWN_MASK;
 
-    private Browser() {
+    private AutoClicker() {
         String url = "https://cookieclicker.one/cookie-clicker";
 
         if(Desktop.isDesktopSupported()) {
@@ -19,10 +19,7 @@ public final class Browser {
                 throw new RuntimeException(e);
             }
         }
-    }
 
-    public static void main(String[] args) {
-        new Browser();
         try {
             Robot bot = new Robot();
             int xi, yi;
@@ -57,5 +54,9 @@ public final class Browser {
         } catch (AWTException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        new AutoClicker();
     }
 }
