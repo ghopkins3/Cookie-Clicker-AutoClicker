@@ -1,27 +1,14 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class Browser extends Frame implements ActionListener {
+public final class Browser {
 
-    static Robot bot;
+    static final int click = InputEvent.BUTTON1_DOWN_MASK;
 
-    static {
-        try {
-            bot = new Robot();
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    static int mask = InputEvent.BUTTON1_DOWN_MASK;
-
-    public Browser() {
+    private Browser() {
         String url = "https://cookieclicker.one/cookie-clicker";
 
         if(Desktop.isDesktopSupported()) {
@@ -36,19 +23,39 @@ public class Browser extends Frame implements ActionListener {
 
     public static void main(String[] args) {
         new Browser();
-        bot.mouseMove(100,100);
-        bot.mouseMove(100, 0);
-        bot.mouseMove(100, 0);
-        bot.mouseMove(100, 0);
-        bot.mouseMove(100, 0);
-        bot.mouseMove(100, 0);
-        bot.mouseMove(100, 0);
-        bot.mousePress(mask);
+        try {
+            Robot bot = new Robot();
+            int xi, yi;
+            int x = 1032;
+            int y = 425;
+            Point p = MouseInfo.getPointerInfo().getLocation();
+            xi = p.x;
+            yi = p.y;
+            int i = xi;
+            int j = yi;
+            while(i != x || j != y) {
+                bot.mouseMove(i, j);
+                if (i < x)
+                    i++;
+                if (j < y)
+                    j++;
+                if (i > x)
+                    i--;
+                if (j > y)
+                    j--;
+                Thread.sleep(3);
+            }
 
-    }
+            int t = 0;
+            while(t < 1000){
+                bot.mousePress(click);
+                bot.mouseRelease(click);
+                t++;
+                Thread.sleep(15);
+            }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+        } catch (AWTException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
