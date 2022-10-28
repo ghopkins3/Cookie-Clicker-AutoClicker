@@ -6,11 +6,13 @@ import java.net.URISyntaxException;
 
 public final class AutoClicker {
 
+    // click value set to mouse button 1
     final int click = InputEvent.BUTTON1_DOWN_MASK;
 
     private AutoClicker() {
         String url = "https://cookieclicker.one/cookie-clicker";
 
+        // Opens default browser
         if(Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             try {
@@ -20,6 +22,11 @@ public final class AutoClicker {
             }
         }
 
+        /*
+        Initializes the x and y of the center of the cookie
+        on the cookie clicker website. Automatically moves the
+        mouse cursor to the center of the cookie
+         */
         try {
             Robot bot = new Robot();
             int xi, yi;
@@ -30,6 +37,7 @@ public final class AutoClicker {
             yi = p.y;
             int i = xi;
             int j = yi;
+
             while(i != x || j != y) {
                 bot.mouseMove(i, j);
                 if (i < x)
@@ -42,7 +50,14 @@ public final class AutoClicker {
                     j--;
                 Thread.sleep(3);
             }
-
+            /*
+            Clicks 1000 times after the cursor reaches
+            the specified x and y coordinate.
+            Uses Thread.sleep() to ensure the script clicks
+            exactly 1000 times. Without Thread.sleep() or around
+            <15 ms in between clicks, some clicks do not go through
+            and can even cause lag due to how fast it is clicking.
+             */
             int t = 0;
             while(t < 1000){
                 bot.mousePress(click);
