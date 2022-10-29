@@ -9,6 +9,11 @@ public final class AutoClicker {
     // click value set to mouse button 1
     final int click = InputEvent.BUTTON1_DOWN_MASK;
 
+    /*
+    Checks if Desktop class is supported on the
+    current platform. If it is, the url
+    is opened in the default browser.
+     */
     private AutoClicker() {
         String url = "https://cookieclicker.one/cookie-clicker";
 
@@ -23,9 +28,10 @@ public final class AutoClicker {
         }
 
         /*
-        Initializes the x and y of the center of the cookie
-        on the cookie clicker website. Automatically moves the
-        mouse cursor to the center of the cookie
+        Initializes the x and y to the coordinates of
+        the center of the cookie on the cookie clicker
+        website and moves the mouse cursor to the center
+        of the cookie
          */
         try {
             Robot bot = new Robot();
@@ -54,7 +60,7 @@ public final class AutoClicker {
             Clicks 1000 times after the cursor reaches
             the specified x and y coordinate.
             Uses Thread.sleep() to ensure the script clicks
-            exactly 1000 times. Without Thread.sleep() or around
+            exactly 1000 times. Without Thread.sleep() of around
             <15 ms in between clicks, some clicks do not go through
             and can even cause lag due to how fast it is clicking.
              */
@@ -71,6 +77,7 @@ public final class AutoClicker {
         }
     }
 
+    // Instantiates AutoClicker and runs the script
     public static void main(String[] args) {
         new AutoClicker();
     }
