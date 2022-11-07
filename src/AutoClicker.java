@@ -34,27 +34,104 @@ public final class AutoClicker {
         of the cookie
          */
         try {
-            Robot bot = new Robot();
-            int xi, yi;
-            int x = 1032;
-            int y = 425;
-            Point p = MouseInfo.getPointerInfo().getLocation();
-            xi = p.x;
-            yi = p.y;
-            int i = xi;
-            int j = yi;
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            if(screenSize.getWidth() == 1920 && screenSize.getHeight() == 1080) {
+                Robot bot = new Robot();
+                int xi, yi;
+                int x = 1032;
+                int y = 425;
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                xi = p.x;
+                yi = p.y;
+                int i = xi;
+                int j = yi;
 
-            while(i != x || j != y) {
-                bot.mouseMove(i, j);
-                if (i < x)
-                    i++;
-                if (j < y)
-                    j++;
-                if (i > x)
-                    i--;
-                if (j > y)
-                    j--;
-                Thread.sleep(3);
+                while(i != x || j != y) {
+                    bot.mouseMove(i, j);
+                    if (i < x)
+                        i++;
+                    if (j < y)
+                        j++;
+                    if (i > x)
+                        i--;
+                    if (j > y)
+                        j--;
+                    Thread.sleep(3);
+                }
+
+                int t = 0;
+                while(t < 200){
+                    bot.mousePress(click);
+                    bot.mouseRelease(click);
+                    t++;
+                    Thread.sleep(15);
+                }
+            }
+
+            if(screenSize.getWidth() == 1280 && screenSize.getHeight() == 720) {
+                Robot bot = new Robot();
+                int xi, yi;
+                int x = 688;
+                int y = 283;
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                xi = p.x;
+                yi = p.y;
+                int i = xi;
+                int j = yi;
+
+                while(i != x || j != y) {
+                    bot.mouseMove(i, j);
+                    if (i < x)
+                        i++;
+                    if (j < y)
+                        j++;
+                    if (i > x)
+                        i--;
+                    if (j > y)
+                        j--;
+                    Thread.sleep(3);
+                }
+
+                int t = 0;
+                while(t < 200){
+                    bot.mousePress(click);
+                    bot.mouseRelease(click);
+                    t++;
+                    Thread.sleep(15);
+                }
+            }
+
+            if(screenSize.getWidth() == 1366 && screenSize.getHeight() == 768) {
+                Robot bot = new Robot();
+                int xi, yi;
+                int x = 734;
+                int y = 302;
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                xi = p.x;
+                yi = p.y;
+                int i = xi;
+                int j = yi;
+
+                while(i != x || j != y) {
+                    bot.mouseMove(i, j);
+                    if (i < x)
+                        i++;
+                    if (j < y)
+                        j++;
+                    if (i > x)
+                        i--;
+                    if (j > y)
+                        j--;
+                    Thread.sleep(0);
+                }
+
+                int t = 0;
+                while(t < 200){
+                    bot.mousePress(click);
+                    bot.mouseRelease(click);
+                    t++;
+                    Thread.sleep(15);
+                }
             }
             /*
             Clicks 1000 times after the cursor reaches
@@ -64,13 +141,6 @@ public final class AutoClicker {
             <15 ms in between clicks, some clicks do not go through
             and can even cause lag due to how fast it is clicking.
              */
-            int t = 0;
-            while(t < 1000){
-                bot.mousePress(click);
-                bot.mouseRelease(click);
-                t++;
-                Thread.sleep(15);
-            }
 
         } catch (AWTException | InterruptedException e) {
             throw new RuntimeException(e);
