@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/*
+If using multiple monitors and
+default browser is already open,
+browser must be open on main monitor
+ */
 public final class AutoClicker {
 
     // click value set to mouse button 1
